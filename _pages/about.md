@@ -1,7 +1,7 @@
 ---
 layout: page
 title: About
-permalink: /
+permalink: /About/
 subtitle: |
   <span style='color: green; font-weight: bold; font-style: italic;'>Email:</span><br>
   <span style='color: green; font-style: italic;'>rc.grear@gmail.com</span><br><br>
