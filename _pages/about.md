@@ -1,6 +1,6 @@
 ---
-layout: about
-title: about
+layout: About
+title: About
 permalink: /
 subtitle: |
   <span style='color: green; font-weight: bold; font-style: italic;'>Email:</span><br>
