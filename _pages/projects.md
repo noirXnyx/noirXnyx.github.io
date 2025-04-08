@@ -1,11 +1,11 @@
 ---
 layout: page
-title: projects
+title: Projects
 permalink: /projects/
-description: A growing collection of your cool projects.
+description: This page features projects that, for various reasons, were not committed to or deployed on GitHub, along with explanations of the projects included in the repositories.
 nav: true
 nav_order: 3
-display_categories: [work, fun]
+display_categories: [school projects, personal projects]
 horizontal: false
 ---
 
