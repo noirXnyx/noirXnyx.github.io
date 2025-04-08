@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Repositories
+title: repositories
 permalink: /repositories/
 
 # For description - Edit the `_data/repositories.yml` and change the `github_users` and `github_repos` lists to

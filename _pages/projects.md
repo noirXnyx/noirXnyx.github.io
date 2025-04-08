@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Projects
+title: projects
 permalink: /projects/
 description: This page features projects that, for various reasons, were not committed to or deployed on GitHub, along with explanations of the projects included in the repositories.
 nav: true
