@@ -1,7 +1,7 @@
-github_users:     # Can add any github username
+#github_users:     # Can add any github username
   - noirXnyx
 
-repo_description_lines_max: 1 # can change to any number
+#repo_description_lines_max: 1 # This can be changed to any number
 
-github_repos:
+#github_repos:
   - noirXnyx/Project-Build-an-ML-Pipeline-Starter
