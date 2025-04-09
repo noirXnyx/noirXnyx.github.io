@@ -22,11 +22,10 @@ Models used in this study
 - Traditional regression models: Ridge Regression, Lasso Regression
 
 I divided the script/code to three. All of these were done in Jupyter Lab. Language is Python.
-- Data Preparation and Processing
-- Building and hypertuning the machine learning models
-- Data analysis which included statistical results, tests, and visuals
+- Data Preparation and Processing. <a href="https://www.python.org" target="_blank">Click here to view the complete code for this part</a>
+- Building and hypertuning the machine learning models. <a href="https://www.python.org" target="_blank">Click here to view the complete code for this part</a>
+- Data analysis which included statistical results, tests, and visuals. <a href="https://www.python.org" target="_blank">Click here to view the complete code for this part</a>
 
-If you want to view the complete code I used, kindly click the 
 {% raw %}
 ```html
 For data preparation and processing, I started with importing the packages. 
@@ -46,7 +45,7 @@ which I also utilized in this study.
 ```
 {% endraw %}
 
-Sample link: <a href="https://www.example.com">Click here</a>
+
 
 
 <div class="row justify-content-sm-center">

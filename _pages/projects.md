@@ -2,7 +2,7 @@
 layout: page
 title: Projects
 permalink: /projects/
-description: This page features projects that, for various reasons, were not committed to or deployed on GitHub, along with explanations of the projects included in the repositories.
+description: This page features projects that, for various reasons, were not committed to or deployed on GitHub, along with explanations of the projects included in the repositories. I'm still in the process of updating and editing this page.
 nav: true
 nav_order: 3
 display_categories: [personal projects, school projects]
