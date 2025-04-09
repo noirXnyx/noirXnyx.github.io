@@ -25,9 +25,9 @@ I divided the script/code to three. All of these were done in Jupyter Lab. Langu
 ```html
 The four models - Ridge Regression, Lasso Regression, Decision Tree Regressor, and XGBoost - were hypertuned 
 using RandomizedSearchCV with the following configuration: n_iter=10, scoring='r2', cv=3, random_state=42, and
-n_jobs=-1. The following metrics were collected: R² Score, Mean Squared Error (MSE), Root Mean Squared Error (RMSE),
-Mean Absolute Error (MAE), and Pearson Correlation. Additional diagnostics included mean residual, residual
-standard deviation, and diagnostic visualizations. 
+n_jobs=-1. The following metrics were collected: R² Score, Mean Squared Error (MSE), Root Mean Squared Error 
+(RMSE), Mean Absolute Error (MAE), and Pearson Correlation. Additional diagnostics included mean residual, 
+residual standard deviation, and diagnostic visualizations. 
 ```
 {% endraw %}
 
@@ -149,8 +149,7 @@ score range.
 </div><br>
 
 
-Feature diagnostics also supported this conclusion. While both groups identified similar top features, tree-based models assigned higher importance scores to behavioral predictors and
-were better at capturing non-linear patterns. This suggests that tree-based models are more accurate and suitable for modeling complex relationships in school-level performance data.
+Feature diagnostics also supported this conclusion. This suggests that tree-based models are more accurate and suitable for modeling complex relationships in school-level performance data.
 
 
 <div class="row">
@@ -165,6 +164,11 @@ Incidents, AvgDuration, and PctEnrollment, emerged as the most influential featu
 outcomes
 </div><br>
 
-Based on this comprehensive statistical and visual evaluation, sufficient evidence exists
-to reject the null hypothesis and conclude that tree-based models significantly outperform
-traditional regression models in predicting school-level Scale Score Averages. 
+
+{% raw %}
+```html
+Based on this comprehensive statistical and visual evaluation, sufficient evidence exists to reject the null 
+hypothesis and conclude that tree-based models significantly outperform traditional regression models in 
+predicting school-level Scale Score Averages. 
+```
+{% endraw %}
