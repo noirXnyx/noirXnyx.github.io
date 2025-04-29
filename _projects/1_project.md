@@ -2,7 +2,7 @@
 layout: page
 title: Comparative Machine Learning Approaches For Predicting Scale Score Averages (Capstone)
 description: 
-img: assets/img/12.jpg
+img: 
 importance: 1
 category: school projects
 related_publications: false
