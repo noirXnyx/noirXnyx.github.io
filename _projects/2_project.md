@@ -4,7 +4,7 @@ title: Comparative Machine Learning Approaches For Predicting Scale Score Averag
 description: 
 img: 
 importance: 2
-category: school projects
+category: school
 related_publications: false
 ---
 
