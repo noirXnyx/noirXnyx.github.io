@@ -2,7 +2,7 @@
 layout: page
 title: Comparative Machine Learning Approaches For Predicting Scale Score Averages (Capstone)
 description: 
-  Languages & Environments - Python, Jupyter Lab
+  Language - Python, Environment - Jupyter Lab
   # Data Handling & Processing - Pandas, NumPy, scikit-learn, scikit-learn, CSV
   # Machine Learning & Model Selection - Linear Regression, Decision Tree Regressor, Random Forest Regressor, Gradient Boosting Regressor, RandomizedSearchCV (For hyperparameter tuning)
   # Data Visualization - Matplotlib, Seaborn
