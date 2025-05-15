@@ -5,7 +5,7 @@ description: Platform - Tableau
 img: # assets/img/7.jpg
 redirect: https://public.tableau.com/app/profile/rc.gr/viz/PatternsinTransportationIncomeandPovertyAcrossAll50U_S_States-A2015Census-BasedAnalysis/Dashboard-Q1
 importance: 3
-category: school projects
+category: school
 ---
 
 Every project has a beautiful feature showcase page.
