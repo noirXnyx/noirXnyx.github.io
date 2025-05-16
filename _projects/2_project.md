@@ -19,5 +19,11 @@ For this project, I was provided with a dataset to work with and project require
 - <a href="{{ 'https://public.tableau.com/app/profile/rc.gr/viz/PatternsinTransportationIncomeandPovertyAcrossAll50U_S_States-A2015Census-BasedAnalysis/Dashboard-Q1' | relative_url }}" target="_blank">Provide at least three distinct visualizations, host them on Tableau Public, and include different chart types.</a>
 - <a href="{{ '/assets/html/2_project_report.html' | relative_url }}" target="_blank">Completed project report with visualization, clear findings, and business insights.</a>
 
-
+{% raw %}
+```html
+Kindly click the highlighted requirements above to view the code used in this project, explore the Tableau
+dashboards and stories, and read the completed project report. If you have any suggestions for improvements
+or a better flow for this project, feel free to reach out via email. I’d be happy to discuss it!
+```
+{% endraw %}
 
