@@ -3,11 +3,11 @@ layout: about
 title: About
 permalink: /
 subtitle: |
-  <span style='color: blue; font-weight: bold; font-style: italic; font-size: 1.15rem;'>Email:</span><br>
-  <span style='color: blue; font-style: italic; font-size: 1.15rem;'>rc.grear@gmail.com</span><br><br>
+  <span style='color: green; font-weight: bold; font-style: italic; font-size: 1.15rem;'>Email:</span><br>
+  <span style='color: green; font-style: italic; font-size: 1.15rem;'>rc.grear@gmail.com</span><br><br>
 
-  <span style='color: blue; font-weight: bold; font-style: italic; font-size: 1.15rem;'>Interests: </span><br>
-  <span style='color: blue; font-style: italic; font-size: 1.15rem;'> Beyond data and technology, I find joy in hands-on and heart-centered activities like cooking, gardening, and fishing. I'm drawn to adventure—whether that means traveling to new places or simply enjoying quiet moments while gazing at the horizon. </span><br><br>
+  <span style='color: green; font-weight: bold; font-style: italic; font-size: 1.15rem;'>Interests: </span><br>
+  <span style='color: green; font-style: italic; font-size: 1.15rem;'> Beyond data and technology, I find joy in hands-on and heart-centered activities like cooking, gardening, and fishing. I'm drawn to adventure—whether that means traveling to new places or simply enjoying quiet moments while gazing at the horizon. </span><br><br>
 
 selected_papers: false # includes a list of papers marked as "selected={true}"           #Change to true if needed on the page
 social: false # includes social icons at the bottom of the page              #Change to true if needed on the page
