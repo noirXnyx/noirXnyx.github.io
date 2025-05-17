@@ -1,0 +1,102 @@
+<html>
+<head>
+<title>database.py</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #7a7e85;}
+.s1 { color: #bcbec4;}
+.s2 { color: #cf8e6d;}
+.s3 { color: #bcbec4;}
+.s4 { color: #6aab73;}
+</style>
+</head>
+<body bgcolor="#1e1f22">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+database.py</font>
+</center></td></tr></table>
+<pre><span class="s0">#  sqlalchemy imports: create_engine is used to create a connection to the db, allowing interaction with the db</span>
+<span class="s0"># Column, Integer, Float: these are used to define the schema in the db</span>
+<span class="s0"># declarative_base - used to create a base class for declarative class definitions, defining the structure of the db</span>
+<span class="s0"># using python classes</span>
+<span class="s0"># sessionmaker - factory for creating new SQLAlchemy Session objects,</span>
+<span class="s0"># which manage connections and transactions with the database.</span>
+<span class="s2">from </span><span class="s1">sqlalchemy </span><span class="s2">import </span><span class="s1">create_engine</span><span class="s3">, </span><span class="s1">Column</span><span class="s3">, </span><span class="s1">Integer</span><span class="s3">, </span><span class="s1">Float</span>
+<span class="s2">from </span><span class="s1">sqlalchemy</span><span class="s3">.</span><span class="s1">orm </span><span class="s2">import </span><span class="s1">declarative_base</span><span class="s3">, </span><span class="s1">sessionmaker</span>
+
+<span class="s0"># Base handles the internal SQLAlchemy mechanics needed to map Python classes to database tables.</span>
+<span class="s1">Base </span><span class="s3">= </span><span class="s1">declarative_base</span><span class="s3">()</span>
+
+<span class="s0"># This part is for creating/recreating the db table 'weather_data'</span>
+<span class="s2">class </span><span class="s1">WeatherRecord</span><span class="s3">(</span><span class="s1">Base</span><span class="s3">):</span>
+    <span class="s1">__tablename__ </span><span class="s3">= </span><span class="s4">'weather_data'</span>
+    <span class="s1">id </span><span class="s3">= </span><span class="s1">Column</span><span class="s3">(</span><span class="s1">Integer</span><span class="s3">, </span><span class="s1">primary_key</span><span class="s3">=</span><span class="s2">True</span><span class="s3">)</span>
+    <span class="s1">latitude  </span><span class="s3">= </span><span class="s1">Column</span><span class="s3">(</span><span class="s1">Float</span><span class="s3">)</span>
+    <span class="s1">longitude </span><span class="s3">= </span><span class="s1">Column</span><span class="s3">(</span><span class="s1">Float</span><span class="s3">)</span>
+    <span class="s1">month </span><span class="s3">= </span><span class="s1">Column</span><span class="s3">(</span><span class="s1">Integer</span><span class="s3">)</span>
+    <span class="s1">day </span><span class="s3">= </span><span class="s1">Column</span><span class="s3">(</span><span class="s1">Integer</span><span class="s3">)</span>
+    <span class="s1">year </span><span class="s3">= </span><span class="s1">Column</span><span class="s3">(</span><span class="s1">Integer</span><span class="s3">)</span>
+    <span class="s1">avg_temp_Fahrenheit </span><span class="s3">= </span><span class="s1">Column</span><span class="s3">(</span><span class="s1">Float</span><span class="s3">)</span>
+    <span class="s1">min_temp_Fahrenheit </span><span class="s3">= </span><span class="s1">Column</span><span class="s3">(</span><span class="s1">Float</span><span class="s3">)</span>
+    <span class="s1">max_temp_Fahrenheit </span><span class="s3">= </span><span class="s1">Column</span><span class="s3">(</span><span class="s1">Float</span><span class="s3">)</span>
+    <span class="s1">avg_wind_speed_mph </span><span class="s3">= </span><span class="s1">Column</span><span class="s3">(</span><span class="s1">Float</span><span class="s3">)</span>
+    <span class="s1">min_wind_speed_mph </span><span class="s3">= </span><span class="s1">Column</span><span class="s3">(</span><span class="s1">Float</span><span class="s3">)</span>
+    <span class="s1">max_wind_speed_mph </span><span class="s3">= </span><span class="s1">Column</span><span class="s3">(</span><span class="s1">Float</span><span class="s3">)</span>
+    <span class="s1">sum_precipitation_inches </span><span class="s3">= </span><span class="s1">Column</span><span class="s3">(</span><span class="s1">Float</span><span class="s3">)</span>
+    <span class="s1">min_precipitation_inches </span><span class="s3">= </span><span class="s1">Column</span><span class="s3">(</span><span class="s1">Float</span><span class="s3">)</span>
+    <span class="s1">max_precipitation_inches </span><span class="s3">= </span><span class="s1">Column</span><span class="s3">(</span><span class="s1">Float</span><span class="s3">)</span>
+
+<span class="s2">def </span><span class="s1">recreate_table</span><span class="s3">():</span>
+    <span class="s1">engine </span><span class="s3">= </span><span class="s1">create_engine</span><span class="s3">(</span><span class="s4">'sqlite:///weather.db'</span><span class="s3">) </span><span class="s0"># This creates a connection to an SQLite database file</span>
+                                                    <span class="s0"># named weather.db. The sqlite:/// prefix indicates that</span>
+                                                    <span class="s0"># the database is an SQLite file.</span>
+    <span class="s1">Base</span><span class="s3">.</span><span class="s1">metadata</span><span class="s3">.</span><span class="s1">drop_all</span><span class="s3">(</span><span class="s1">engine</span><span class="s3">)  </span><span class="s0"># Drop all tables, this is useful for dynamic dates/resetting the db schema</span>
+    <span class="s1">Base</span><span class="s3">.</span><span class="s1">metadata</span><span class="s3">.</span><span class="s1">create_all</span><span class="s3">(</span><span class="s1">engine</span><span class="s3">)  </span><span class="s0"># Recreate all tables</span>
+    <span class="s2">return </span><span class="s1">engine</span>
+
+<span class="s2">def </span><span class="s1">insert_weather_data</span><span class="s3">(</span><span class="s1">engine</span><span class="s3">, </span><span class="s1">weather_data</span><span class="s3">):</span>
+    <span class="s1">Session </span><span class="s3">= </span><span class="s1">sessionmaker</span><span class="s3">(</span><span class="s1">bind</span><span class="s3">=</span><span class="s1">engine</span><span class="s3">)</span>
+    <span class="s1">session </span><span class="s3">= </span><span class="s1">Session</span><span class="s3">()</span>
+
+    <span class="s0"># creates a new instance of WeatherRecord with attributes populated from the weather_data object</span>
+    <span class="s1">record </span><span class="s3">= </span><span class="s1">WeatherRecord</span><span class="s3">(</span>
+        <span class="s1">latitude</span><span class="s3">=</span><span class="s1">weather_data</span><span class="s3">.</span><span class="s1">latitude</span><span class="s3">,</span>
+        <span class="s1">longitude</span><span class="s3">=</span><span class="s1">weather_data</span><span class="s3">.</span><span class="s1">longitude</span><span class="s3">,</span>
+        <span class="s1">month</span><span class="s3">=</span><span class="s1">weather_data</span><span class="s3">.</span><span class="s1">date</span><span class="s3">.</span><span class="s1">month</span><span class="s3">,</span>
+        <span class="s1">day</span><span class="s3">=</span><span class="s1">weather_data</span><span class="s3">.</span><span class="s1">date</span><span class="s3">.</span><span class="s1">day</span><span class="s3">,</span>
+        <span class="s1">year</span><span class="s3">=</span><span class="s1">weather_data</span><span class="s3">.</span><span class="s1">date</span><span class="s3">.</span><span class="s1">year</span><span class="s3">,</span>
+        <span class="s1">avg_temp_Fahrenheit</span><span class="s3">=</span><span class="s1">weather_data</span><span class="s3">.</span><span class="s1">avg_temp</span><span class="s3">,</span>
+        <span class="s1">min_temp_Fahrenheit</span><span class="s3">=</span><span class="s1">weather_data</span><span class="s3">.</span><span class="s1">min_temp</span><span class="s3">,</span>
+        <span class="s1">max_temp_Fahrenheit</span><span class="s3">=</span><span class="s1">weather_data</span><span class="s3">.</span><span class="s1">max_temp</span><span class="s3">,</span>
+        <span class="s1">avg_wind_speed_mph</span><span class="s3">=</span><span class="s1">weather_data</span><span class="s3">.</span><span class="s1">avg_wind_speed</span><span class="s3">,</span>
+        <span class="s1">min_wind_speed_mph</span><span class="s3">=</span><span class="s1">weather_data</span><span class="s3">.</span><span class="s1">min_wind_speed</span><span class="s3">,</span>
+        <span class="s1">max_wind_speed_mph</span><span class="s3">=</span><span class="s1">weather_data</span><span class="s3">.</span><span class="s1">max_wind_speed</span><span class="s3">,</span>
+        <span class="s1">sum_precipitation_inches</span><span class="s3">=</span><span class="s1">weather_data</span><span class="s3">.</span><span class="s1">sum_precipitation</span><span class="s3">,</span>
+        <span class="s1">min_precipitation_inches</span><span class="s3">=</span><span class="s1">weather_data</span><span class="s3">.</span><span class="s1">min_precipitation</span><span class="s3">,</span>
+        <span class="s1">max_precipitation_inches</span><span class="s3">=</span><span class="s1">weather_data</span><span class="s3">.</span><span class="s1">max_precipitation</span>
+        <span class="s3">)</span>
+    <span class="s1">session</span><span class="s3">.</span><span class="s1">add</span><span class="s3">(</span><span class="s1">record</span><span class="s3">) </span><span class="s0">#adds the new record to the session, staging it for insertion into the database.</span>
+    <span class="s1">session</span><span class="s3">.</span><span class="s1">commit</span><span class="s3">() </span><span class="s0">#commits the transaction, which inserts the record into the database</span>
+    <span class="s1">session</span><span class="s3">.</span><span class="s1">close</span><span class="s3">() </span><span class="s0">#closes the session, releasing the connection back to the connection pool</span>
+
+<span class="s0">#querying and displaying weather data from the db</span>
+<span class="s2">def </span><span class="s1">query_weather_data</span><span class="s3">(</span><span class="s1">engine</span><span class="s3">):</span>
+    <span class="s1">Session </span><span class="s3">= </span><span class="s1">sessionmaker</span><span class="s3">(</span><span class="s1">bind</span><span class="s3">=</span><span class="s1">engine</span><span class="s3">)</span>
+    <span class="s1">session </span><span class="s3">= </span><span class="s1">Session</span><span class="s3">()</span>
+
+    <span class="s0">#executes a query that retrieves all records from the WeatherRecord table and stores them in the results list</span>
+    <span class="s1">results </span><span class="s3">= </span><span class="s1">session</span><span class="s3">.</span><span class="s1">query</span><span class="s3">(</span><span class="s1">WeatherRecord</span><span class="s3">).</span><span class="s1">all</span><span class="s3">()</span>
+
+    <span class="s0">#The function loops through each record in results and prints its attributes in a formatted string</span>
+    <span class="s2">for </span><span class="s1">result </span><span class="s2">in </span><span class="s1">results</span><span class="s3">:</span>
+        <span class="s1">print</span><span class="s3">(</span><span class="s4">f&quot;ID: </span><span class="s2">{</span><span class="s1">result</span><span class="s3">.</span><span class="s1">id</span><span class="s2">}</span><span class="s4">, Latitude: </span><span class="s2">{</span><span class="s1">result</span><span class="s3">.</span><span class="s1">latitude</span><span class="s2">}</span><span class="s4">, Longitude: </span><span class="s2">{</span><span class="s1">result</span><span class="s3">.</span><span class="s1">longitude</span><span class="s2">}</span><span class="s4">, &quot;</span>
+              <span class="s4">f&quot;Month: </span><span class="s2">{</span><span class="s1">result</span><span class="s3">.</span><span class="s1">month</span><span class="s2">}</span><span class="s4">, Day: </span><span class="s2">{</span><span class="s1">result</span><span class="s3">.</span><span class="s1">day</span><span class="s2">}</span><span class="s4">, Year: </span><span class="s2">{</span><span class="s1">result</span><span class="s3">.</span><span class="s1">year</span><span class="s2">}</span><span class="s4">, &quot;</span>
+              <span class="s4">f&quot;Avg Temp: </span><span class="s2">{</span><span class="s1">result</span><span class="s3">.</span><span class="s1">avg_temp_Fahrenheit</span><span class="s2">}</span><span class="s4">, Min Temp: </span><span class="s2">{</span><span class="s1">result</span><span class="s3">.</span><span class="s1">min_temp_Fahrenheit</span><span class="s2">}</span><span class="s4">, Max Temp: </span><span class="s2">{</span><span class="s1">result</span><span class="s3">.</span><span class="s1">max_temp_Fahrenheit</span><span class="s2">}</span><span class="s4">, &quot;</span>
+              <span class="s4">f&quot;Avg Wind Speed: </span><span class="s2">{</span><span class="s1">result</span><span class="s3">.</span><span class="s1">avg_wind_speed_mph</span><span class="s2">}</span><span class="s4">, Minimum Wind Speed: </span><span class="s2">{</span><span class="s1">result</span><span class="s3">.</span><span class="s1">min_wind_speed_mph</span><span class="s2">}</span><span class="s4">, Maximum Wind Speed: </span><span class="s2">{</span><span class="s1">result</span><span class="s3">.</span><span class="s1">max_wind_speed_mph</span><span class="s2">}</span><span class="s4">, Sum Precipitation: </span><span class="s2">{</span><span class="s1">result</span><span class="s3">.</span><span class="s1">sum_precipitation_inches</span><span class="s2">}</span><span class="s4">, &quot;</span>
+              <span class="s4">f&quot;Min Precipitation: </span><span class="s2">{</span><span class="s1">result</span><span class="s3">.</span><span class="s1">min_precipitation_inches</span><span class="s2">}</span><span class="s4">, Max Precipitation: </span><span class="s2">{</span><span class="s1">result</span><span class="s3">.</span><span class="s1">max_precipitation_inches</span><span class="s2">}</span><span class="s4">&quot;</span><span class="s3">)</span>
+
+    <span class="s1">session</span><span class="s3">.</span><span class="s1">close</span><span class="s3">()</span>
+</pre>
+</body>
+</html>

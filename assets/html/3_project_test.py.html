@@ -1,0 +1,215 @@
+<html>
+<head>
+<title>test.py</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #cf8e6d;}
+.s1 { color: #bcbec4;}
+.s2 { color: #bcbec4;}
+.s3 { color: #7a7e85;}
+.s4 { color: #6aab73;}
+.s5 { color: #2aacb8;}
+</style>
+</head>
+<body bgcolor="#1e1f22">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+test.py</font>
+</center></td></tr></table>
+<pre><span class="s0">import </span><span class="s1">unittest</span>
+<span class="s0">from </span><span class="s1">sqlalchemy</span><span class="s2">.</span><span class="s1">orm </span><span class="s0">import </span><span class="s1">sessionmaker</span>
+<span class="s0">from </span><span class="s1">database </span><span class="s0">import </span><span class="s1">recreate_table</span><span class="s2">, </span><span class="s1">query_weather_data</span><span class="s2">, </span><span class="s1">WeatherRecord</span>
+<span class="s0">from </span><span class="s1">weather_data </span><span class="s0">import </span><span class="s1">WeatherData</span>
+<span class="s0">from </span><span class="s1">datetime </span><span class="s0">import </span><span class="s1">datetime</span>
+
+<span class="s0">class </span><span class="s1">TestWeatherDataDatabase</span><span class="s2">(</span><span class="s1">unittest</span><span class="s2">.</span><span class="s1">TestCase</span><span class="s2">):</span>
+
+    <span class="s2">@</span><span class="s1">classmethod</span>
+    <span class="s0">def </span><span class="s1">setUpClass</span><span class="s2">(</span><span class="s1">cls</span><span class="s2">):</span>
+        <span class="s3"># Print all data inserted in the tests</span>
+        <span class="s1">print</span><span class="s2">(</span><span class="s4">&quot;All records inserted/used in the test database:&quot;</span><span class="s2">)</span>
+
+        <span class="s3"># Set up the database for testing</span>
+        <span class="s1">cls</span><span class="s2">.</span><span class="s1">engine </span><span class="s2">= </span><span class="s1">recreate_table</span><span class="s2">()</span>
+
+        <span class="s3"># Example weather data to be inserted</span>
+        <span class="s1">cls</span><span class="s2">.</span><span class="s1">weather_data </span><span class="s2">= </span><span class="s1">WeatherData</span><span class="s2">(</span><span class="s1">latitude</span><span class="s2">=</span><span class="s5">40.0806</span><span class="s2">, </span><span class="s1">longitude</span><span class="s2">=-</span><span class="s5">80.9001</span><span class="s2">, </span><span class="s1">date</span><span class="s2">=</span><span class="s1">datetime</span><span class="s2">(</span><span class="s5">2024</span><span class="s2">, </span><span class="s5">8</span><span class="s2">, </span><span class="s5">29</span><span class="s2">))</span>
+        <span class="s1">cls</span><span class="s2">.</span><span class="s1">weather_data</span><span class="s2">.</span><span class="s1">avg_temp </span><span class="s2">= </span><span class="s5">52.6</span>
+        <span class="s1">cls</span><span class="s2">.</span><span class="s1">weather_data</span><span class="s2">.</span><span class="s1">min_temp </span><span class="s2">= -</span><span class="s5">7.3</span>
+        <span class="s1">cls</span><span class="s2">.</span><span class="s1">weather_data</span><span class="s2">.</span><span class="s1">max_temp </span><span class="s2">= </span><span class="s5">94.8</span>
+        <span class="s1">cls</span><span class="s2">.</span><span class="s1">weather_data</span><span class="s2">.</span><span class="s1">avg_wind_speed </span><span class="s2">= </span><span class="s5">10.0</span>
+        <span class="s1">cls</span><span class="s2">.</span><span class="s1">weather_data</span><span class="s2">.</span><span class="s1">min_wind_speed </span><span class="s2">= </span><span class="s5">5.0</span>
+        <span class="s1">cls</span><span class="s2">.</span><span class="s1">weather_data</span><span class="s2">.</span><span class="s1">max_wind_speed </span><span class="s2">= </span><span class="s5">15.0</span>
+        <span class="s1">cls</span><span class="s2">.</span><span class="s1">weather_data</span><span class="s2">.</span><span class="s1">sum_precipitation </span><span class="s2">= </span><span class="s5">233.872</span>
+        <span class="s1">cls</span><span class="s2">.</span><span class="s1">weather_data</span><span class="s2">.</span><span class="s1">min_precipitation </span><span class="s2">= </span><span class="s5">0.0</span>
+        <span class="s1">cls</span><span class="s2">.</span><span class="s1">weather_data</span><span class="s2">.</span><span class="s1">max_precipitation </span><span class="s2">= </span><span class="s5">2.0</span>
+
+    <span class="s0">def </span><span class="s1">test_insert_weather_data</span><span class="s2">(</span><span class="s1">self</span><span class="s2">):</span>
+        <span class="s3">#Test inserting weather data into the db</span>
+        <span class="s1">Session </span><span class="s2">= </span><span class="s1">sessionmaker</span><span class="s2">(</span><span class="s1">bind</span><span class="s2">=</span><span class="s1">self</span><span class="s2">.</span><span class="s1">engine</span><span class="s2">)</span>
+        <span class="s1">session </span><span class="s2">= </span><span class="s1">Session</span><span class="s2">()</span>
+
+        <span class="s3"># Convert WeatherData to WeatherRecord</span>
+        <span class="s1">record </span><span class="s2">= </span><span class="s1">WeatherRecord</span><span class="s2">(</span>
+            <span class="s1">latitude</span><span class="s2">=</span><span class="s1">self</span><span class="s2">.</span><span class="s1">weather_data</span><span class="s2">.</span><span class="s1">latitude</span><span class="s2">,</span>
+            <span class="s1">longitude</span><span class="s2">=</span><span class="s1">self</span><span class="s2">.</span><span class="s1">weather_data</span><span class="s2">.</span><span class="s1">longitude</span><span class="s2">,</span>
+            <span class="s1">month</span><span class="s2">=</span><span class="s1">self</span><span class="s2">.</span><span class="s1">weather_data</span><span class="s2">.</span><span class="s1">date</span><span class="s2">.</span><span class="s1">month</span><span class="s2">,</span>
+            <span class="s1">day</span><span class="s2">=</span><span class="s1">self</span><span class="s2">.</span><span class="s1">weather_data</span><span class="s2">.</span><span class="s1">date</span><span class="s2">.</span><span class="s1">day</span><span class="s2">,</span>
+            <span class="s1">year</span><span class="s2">=</span><span class="s1">self</span><span class="s2">.</span><span class="s1">weather_data</span><span class="s2">.</span><span class="s1">date</span><span class="s2">.</span><span class="s1">year</span><span class="s2">,</span>
+            <span class="s1">avg_temp_Fahrenheit</span><span class="s2">=</span><span class="s1">self</span><span class="s2">.</span><span class="s1">weather_data</span><span class="s2">.</span><span class="s1">avg_temp</span><span class="s2">,</span>
+            <span class="s1">min_temp_Fahrenheit</span><span class="s2">=</span><span class="s1">self</span><span class="s2">.</span><span class="s1">weather_data</span><span class="s2">.</span><span class="s1">min_temp</span><span class="s2">,</span>
+            <span class="s1">max_temp_Fahrenheit</span><span class="s2">=</span><span class="s1">self</span><span class="s2">.</span><span class="s1">weather_data</span><span class="s2">.</span><span class="s1">max_temp</span><span class="s2">,</span>
+            <span class="s1">avg_wind_speed_mph</span><span class="s2">=</span><span class="s1">self</span><span class="s2">.</span><span class="s1">weather_data</span><span class="s2">.</span><span class="s1">avg_wind_speed</span><span class="s2">,</span>
+            <span class="s1">min_wind_speed_mph</span><span class="s2">=</span><span class="s1">self</span><span class="s2">.</span><span class="s1">weather_data</span><span class="s2">.</span><span class="s1">min_wind_speed</span><span class="s2">,</span>
+            <span class="s1">max_wind_speed_mph</span><span class="s2">=</span><span class="s1">self</span><span class="s2">.</span><span class="s1">weather_data</span><span class="s2">.</span><span class="s1">max_wind_speed</span><span class="s2">,</span>
+            <span class="s1">sum_precipitation_inches</span><span class="s2">=</span><span class="s1">self</span><span class="s2">.</span><span class="s1">weather_data</span><span class="s2">.</span><span class="s1">sum_precipitation</span><span class="s2">,</span>
+            <span class="s1">min_precipitation_inches</span><span class="s2">=</span><span class="s1">self</span><span class="s2">.</span><span class="s1">weather_data</span><span class="s2">.</span><span class="s1">min_precipitation</span><span class="s2">,</span>
+            <span class="s1">max_precipitation_inches</span><span class="s2">=</span><span class="s1">self</span><span class="s2">.</span><span class="s1">weather_data</span><span class="s2">.</span><span class="s1">max_precipitation</span>
+        <span class="s2">)</span>
+
+        <span class="s1">session</span><span class="s2">.</span><span class="s1">add</span><span class="s2">(</span><span class="s1">record</span><span class="s2">)</span>
+        <span class="s1">session</span><span class="s2">.</span><span class="s1">commit</span><span class="s2">()</span>
+
+        <span class="s3"># Query the inserted data</span>
+        <span class="s1">result </span><span class="s2">= </span><span class="s1">session</span><span class="s2">.</span><span class="s1">query</span><span class="s2">(</span><span class="s1">WeatherRecord</span><span class="s2">).</span><span class="s1">filter_by</span><span class="s2">(</span><span class="s1">latitude</span><span class="s2">=</span><span class="s5">40.0806</span><span class="s2">, </span><span class="s1">longitude</span><span class="s2">=-</span><span class="s5">80.9001</span><span class="s2">).</span><span class="s1">first</span><span class="s2">()</span>
+
+        <span class="s3"># Test if the data inserted correctly</span>
+        <span class="s1">self</span><span class="s2">.</span><span class="s1">assertIsNotNone</span><span class="s2">(</span><span class="s1">result</span><span class="s2">)</span>
+        <span class="s1">self</span><span class="s2">.</span><span class="s1">assertEqual</span><span class="s2">(</span><span class="s1">result</span><span class="s2">.</span><span class="s1">latitude</span><span class="s2">, </span><span class="s5">40.0806</span><span class="s2">)</span>
+        <span class="s1">self</span><span class="s2">.</span><span class="s1">assertEqual</span><span class="s2">(</span><span class="s1">result</span><span class="s2">.</span><span class="s1">longitude</span><span class="s2">, -</span><span class="s5">80.9001</span><span class="s2">)</span>
+        <span class="s1">self</span><span class="s2">.</span><span class="s1">assertEqual</span><span class="s2">(</span><span class="s1">result</span><span class="s2">.</span><span class="s1">avg_temp_Fahrenheit</span><span class="s2">, </span><span class="s5">52.6</span><span class="s2">)</span>
+        <span class="s1">self</span><span class="s2">.</span><span class="s1">assertEqual</span><span class="s2">(</span><span class="s1">result</span><span class="s2">.</span><span class="s1">min_temp_Fahrenheit</span><span class="s2">, -</span><span class="s5">7.3</span><span class="s2">)</span>
+        <span class="s1">self</span><span class="s2">.</span><span class="s1">assertEqual</span><span class="s2">(</span><span class="s1">result</span><span class="s2">.</span><span class="s1">max_temp_Fahrenheit</span><span class="s2">, </span><span class="s5">94.8</span><span class="s2">)</span>
+        <span class="s1">self</span><span class="s2">.</span><span class="s1">assertEqual</span><span class="s2">(</span><span class="s1">result</span><span class="s2">.</span><span class="s1">avg_wind_speed_mph</span><span class="s2">, </span><span class="s5">10.0</span><span class="s2">)</span>
+        <span class="s1">self</span><span class="s2">.</span><span class="s1">assertEqual</span><span class="s2">(</span><span class="s1">result</span><span class="s2">.</span><span class="s1">min_wind_speed_mph</span><span class="s2">, </span><span class="s5">5.0</span><span class="s2">)</span>
+        <span class="s1">self</span><span class="s2">.</span><span class="s1">assertEqual</span><span class="s2">(</span><span class="s1">result</span><span class="s2">.</span><span class="s1">max_wind_speed_mph</span><span class="s2">, </span><span class="s5">15.0</span><span class="s2">)</span>
+        <span class="s1">self</span><span class="s2">.</span><span class="s1">assertEqual</span><span class="s2">(</span><span class="s1">result</span><span class="s2">.</span><span class="s1">sum_precipitation_inches</span><span class="s2">, </span><span class="s5">233.872</span><span class="s2">)</span>
+        <span class="s1">self</span><span class="s2">.</span><span class="s1">assertEqual</span><span class="s2">(</span><span class="s1">result</span><span class="s2">.</span><span class="s1">min_precipitation_inches</span><span class="s2">, </span><span class="s5">0.0</span><span class="s2">)</span>
+        <span class="s1">self</span><span class="s2">.</span><span class="s1">assertEqual</span><span class="s2">(</span><span class="s1">result</span><span class="s2">.</span><span class="s1">max_precipitation_inches</span><span class="s2">, </span><span class="s5">2.0</span><span class="s2">)</span>
+
+        <span class="s1">session</span><span class="s2">.</span><span class="s1">close</span><span class="s2">()</span>
+
+    <span class="s0">def </span><span class="s1">test_query_weather_data</span><span class="s2">(</span><span class="s1">self</span><span class="s2">):</span>
+        <span class="s3">#Test querying weather data from the database</span>
+        <span class="s1">Session </span><span class="s2">= </span><span class="s1">sessionmaker</span><span class="s2">(</span><span class="s1">bind</span><span class="s2">=</span><span class="s1">self</span><span class="s2">.</span><span class="s1">engine</span><span class="s2">)</span>
+        <span class="s1">session </span><span class="s2">= </span><span class="s1">Session</span><span class="s2">()</span>
+
+        <span class="s3"># Insert a record</span>
+        <span class="s1">record </span><span class="s2">= </span><span class="s1">WeatherRecord</span><span class="s2">(</span>
+            <span class="s1">latitude</span><span class="s2">=</span><span class="s1">self</span><span class="s2">.</span><span class="s1">weather_data</span><span class="s2">.</span><span class="s1">latitude</span><span class="s2">,</span>
+            <span class="s1">longitude</span><span class="s2">=</span><span class="s1">self</span><span class="s2">.</span><span class="s1">weather_data</span><span class="s2">.</span><span class="s1">longitude</span><span class="s2">,</span>
+            <span class="s1">month</span><span class="s2">=</span><span class="s1">self</span><span class="s2">.</span><span class="s1">weather_data</span><span class="s2">.</span><span class="s1">date</span><span class="s2">.</span><span class="s1">month</span><span class="s2">,</span>
+            <span class="s1">day</span><span class="s2">=</span><span class="s1">self</span><span class="s2">.</span><span class="s1">weather_data</span><span class="s2">.</span><span class="s1">date</span><span class="s2">.</span><span class="s1">day</span><span class="s2">,</span>
+            <span class="s1">year</span><span class="s2">=</span><span class="s1">self</span><span class="s2">.</span><span class="s1">weather_data</span><span class="s2">.</span><span class="s1">date</span><span class="s2">.</span><span class="s1">year</span><span class="s2">,</span>
+            <span class="s1">avg_temp_Fahrenheit</span><span class="s2">=</span><span class="s1">self</span><span class="s2">.</span><span class="s1">weather_data</span><span class="s2">.</span><span class="s1">avg_temp</span><span class="s2">,</span>
+            <span class="s1">min_temp_Fahrenheit</span><span class="s2">=</span><span class="s1">self</span><span class="s2">.</span><span class="s1">weather_data</span><span class="s2">.</span><span class="s1">min_temp</span><span class="s2">,</span>
+            <span class="s1">max_temp_Fahrenheit</span><span class="s2">=</span><span class="s1">self</span><span class="s2">.</span><span class="s1">weather_data</span><span class="s2">.</span><span class="s1">max_temp</span><span class="s2">,</span>
+            <span class="s1">avg_wind_speed_mph</span><span class="s2">=</span><span class="s1">self</span><span class="s2">.</span><span class="s1">weather_data</span><span class="s2">.</span><span class="s1">avg_wind_speed</span><span class="s2">,</span>
+            <span class="s1">min_wind_speed_mph</span><span class="s2">=</span><span class="s1">self</span><span class="s2">.</span><span class="s1">weather_data</span><span class="s2">.</span><span class="s1">min_wind_speed</span><span class="s2">,</span>
+            <span class="s1">max_wind_speed_mph</span><span class="s2">=</span><span class="s1">self</span><span class="s2">.</span><span class="s1">weather_data</span><span class="s2">.</span><span class="s1">max_wind_speed</span><span class="s2">,</span>
+            <span class="s1">sum_precipitation_inches</span><span class="s2">=</span><span class="s1">self</span><span class="s2">.</span><span class="s1">weather_data</span><span class="s2">.</span><span class="s1">sum_precipitation</span><span class="s2">,</span>
+            <span class="s1">min_precipitation_inches</span><span class="s2">=</span><span class="s1">self</span><span class="s2">.</span><span class="s1">weather_data</span><span class="s2">.</span><span class="s1">min_precipitation</span><span class="s2">,</span>
+            <span class="s1">max_precipitation_inches</span><span class="s2">=</span><span class="s1">self</span><span class="s2">.</span><span class="s1">weather_data</span><span class="s2">.</span><span class="s1">max_precipitation</span>
+        <span class="s2">)</span>
+
+        <span class="s1">session</span><span class="s2">.</span><span class="s1">add</span><span class="s2">(</span><span class="s1">record</span><span class="s2">)</span>
+        <span class="s1">session</span><span class="s2">.</span><span class="s1">commit</span><span class="s2">()</span>
+        <span class="s1">session</span><span class="s2">.</span><span class="s1">close</span><span class="s2">()</span>
+
+        <span class="s3"># Test the query_weather_data function</span>
+        <span class="s1">query_weather_data</span><span class="s2">(</span><span class="s1">self</span><span class="s2">.</span><span class="s1">engine</span><span class="s2">)  </span><span class="s3"># This should print the inserted data</span>
+
+    <span class="s0">def </span><span class="s1">test_insert_multiple_records</span><span class="s2">(</span><span class="s1">self</span><span class="s2">):</span>
+        <span class="s3">#Test inserting multiple records into the database.</span>
+        <span class="s1">Session </span><span class="s2">= </span><span class="s1">sessionmaker</span><span class="s2">(</span><span class="s1">bind</span><span class="s2">=</span><span class="s1">self</span><span class="s2">.</span><span class="s1">engine</span><span class="s2">)</span>
+        <span class="s1">session </span><span class="s2">= </span><span class="s1">Session</span><span class="s2">()</span>
+
+        <span class="s3"># Insert the first record</span>
+        <span class="s1">record1 </span><span class="s2">= </span><span class="s1">WeatherRecord</span><span class="s2">(</span>
+            <span class="s1">latitude</span><span class="s2">=</span><span class="s1">self</span><span class="s2">.</span><span class="s1">weather_data</span><span class="s2">.</span><span class="s1">latitude</span><span class="s2">,</span>
+            <span class="s1">longitude</span><span class="s2">=</span><span class="s1">self</span><span class="s2">.</span><span class="s1">weather_data</span><span class="s2">.</span><span class="s1">longitude</span><span class="s2">,</span>
+            <span class="s1">month</span><span class="s2">=</span><span class="s1">self</span><span class="s2">.</span><span class="s1">weather_data</span><span class="s2">.</span><span class="s1">date</span><span class="s2">.</span><span class="s1">month</span><span class="s2">,</span>
+            <span class="s1">day</span><span class="s2">=</span><span class="s1">self</span><span class="s2">.</span><span class="s1">weather_data</span><span class="s2">.</span><span class="s1">date</span><span class="s2">.</span><span class="s1">day</span><span class="s2">,</span>
+            <span class="s1">year</span><span class="s2">=</span><span class="s1">self</span><span class="s2">.</span><span class="s1">weather_data</span><span class="s2">.</span><span class="s1">date</span><span class="s2">.</span><span class="s1">year</span><span class="s2">,</span>
+            <span class="s1">avg_temp_Fahrenheit</span><span class="s2">=</span><span class="s1">self</span><span class="s2">.</span><span class="s1">weather_data</span><span class="s2">.</span><span class="s1">avg_temp</span><span class="s2">,</span>
+            <span class="s1">min_temp_Fahrenheit</span><span class="s2">=</span><span class="s1">self</span><span class="s2">.</span><span class="s1">weather_data</span><span class="s2">.</span><span class="s1">min_temp</span><span class="s2">,</span>
+            <span class="s1">max_temp_Fahrenheit</span><span class="s2">=</span><span class="s1">self</span><span class="s2">.</span><span class="s1">weather_data</span><span class="s2">.</span><span class="s1">max_temp</span><span class="s2">,</span>
+            <span class="s1">avg_wind_speed_mph</span><span class="s2">=</span><span class="s1">self</span><span class="s2">.</span><span class="s1">weather_data</span><span class="s2">.</span><span class="s1">avg_wind_speed</span><span class="s2">,</span>
+            <span class="s1">min_wind_speed_mph</span><span class="s2">=</span><span class="s1">self</span><span class="s2">.</span><span class="s1">weather_data</span><span class="s2">.</span><span class="s1">min_wind_speed</span><span class="s2">,</span>
+            <span class="s1">max_wind_speed_mph</span><span class="s2">=</span><span class="s1">self</span><span class="s2">.</span><span class="s1">weather_data</span><span class="s2">.</span><span class="s1">max_wind_speed</span><span class="s2">,</span>
+            <span class="s1">sum_precipitation_inches</span><span class="s2">=</span><span class="s1">self</span><span class="s2">.</span><span class="s1">weather_data</span><span class="s2">.</span><span class="s1">sum_precipitation</span><span class="s2">,</span>
+            <span class="s1">min_precipitation_inches</span><span class="s2">=</span><span class="s1">self</span><span class="s2">.</span><span class="s1">weather_data</span><span class="s2">.</span><span class="s1">min_precipitation</span><span class="s2">,</span>
+            <span class="s1">max_precipitation_inches</span><span class="s2">=</span><span class="s1">self</span><span class="s2">.</span><span class="s1">weather_data</span><span class="s2">.</span><span class="s1">max_precipitation</span>
+        <span class="s2">)</span>
+        <span class="s1">session</span><span class="s2">.</span><span class="s1">add</span><span class="s2">(</span><span class="s1">record1</span><span class="s2">)</span>
+
+        <span class="s3"># Insert a second record with different data</span>
+        <span class="s1">weather_data_2 </span><span class="s2">= </span><span class="s1">WeatherData</span><span class="s2">(</span><span class="s1">latitude</span><span class="s2">=</span><span class="s5">35.6895</span><span class="s2">, </span><span class="s1">longitude</span><span class="s2">=</span><span class="s5">139.6917</span><span class="s2">, </span><span class="s1">date</span><span class="s2">=</span><span class="s1">datetime</span><span class="s2">(</span><span class="s5">2023</span><span class="s2">, </span><span class="s5">7</span><span class="s2">, </span><span class="s5">15</span><span class="s2">))</span>
+        <span class="s1">weather_data_2</span><span class="s2">.</span><span class="s1">avg_temp </span><span class="s2">= </span><span class="s5">75.0</span>
+        <span class="s1">weather_data_2</span><span class="s2">.</span><span class="s1">min_temp </span><span class="s2">= </span><span class="s5">68.0</span>
+        <span class="s1">weather_data_2</span><span class="s2">.</span><span class="s1">max_temp </span><span class="s2">= </span><span class="s5">82.0</span>
+        <span class="s1">weather_data_2</span><span class="s2">.</span><span class="s1">avg_wind_speed </span><span class="s2">= </span><span class="s5">5.0</span>
+        <span class="s1">weather_data_2</span><span class="s2">.</span><span class="s1">min_wind_speed </span><span class="s2">= </span><span class="s5">3.0</span>
+        <span class="s1">weather_data_2</span><span class="s2">.</span><span class="s1">max_wind_speed </span><span class="s2">= </span><span class="s5">7.0</span>
+        <span class="s1">weather_data_2</span><span class="s2">.</span><span class="s1">sum_precipitation </span><span class="s2">= </span><span class="s5">10.5</span>
+        <span class="s1">weather_data_2</span><span class="s2">.</span><span class="s1">min_precipitation </span><span class="s2">= </span><span class="s5">0.2</span>
+        <span class="s1">weather_data_2</span><span class="s2">.</span><span class="s1">max_precipitation </span><span class="s2">= </span><span class="s5">1.5</span>
+
+        <span class="s1">record2 </span><span class="s2">= </span><span class="s1">WeatherRecord</span><span class="s2">(</span>
+            <span class="s1">latitude</span><span class="s2">=</span><span class="s1">weather_data_2</span><span class="s2">.</span><span class="s1">latitude</span><span class="s2">,</span>
+            <span class="s1">longitude</span><span class="s2">=</span><span class="s1">weather_data_2</span><span class="s2">.</span><span class="s1">longitude</span><span class="s2">,</span>
+            <span class="s1">month</span><span class="s2">=</span><span class="s1">weather_data_2</span><span class="s2">.</span><span class="s1">date</span><span class="s2">.</span><span class="s1">month</span><span class="s2">,</span>
+            <span class="s1">day</span><span class="s2">=</span><span class="s1">weather_data_2</span><span class="s2">.</span><span class="s1">date</span><span class="s2">.</span><span class="s1">day</span><span class="s2">,</span>
+            <span class="s1">year</span><span class="s2">=</span><span class="s1">weather_data_2</span><span class="s2">.</span><span class="s1">date</span><span class="s2">.</span><span class="s1">year</span><span class="s2">,</span>
+            <span class="s1">avg_temp_Fahrenheit</span><span class="s2">=</span><span class="s1">weather_data_2</span><span class="s2">.</span><span class="s1">avg_temp</span><span class="s2">,</span>
+            <span class="s1">min_temp_Fahrenheit</span><span class="s2">=</span><span class="s1">weather_data_2</span><span class="s2">.</span><span class="s1">min_temp</span><span class="s2">,</span>
+            <span class="s1">max_temp_Fahrenheit</span><span class="s2">=</span><span class="s1">weather_data_2</span><span class="s2">.</span><span class="s1">max_temp</span><span class="s2">,</span>
+            <span class="s1">avg_wind_speed_mph</span><span class="s2">=</span><span class="s1">weather_data_2</span><span class="s2">.</span><span class="s1">avg_wind_speed</span><span class="s2">,</span>
+            <span class="s1">min_wind_speed_mph</span><span class="s2">=</span><span class="s1">weather_data_2</span><span class="s2">.</span><span class="s1">min_wind_speed</span><span class="s2">,</span>
+            <span class="s1">max_wind_speed_mph</span><span class="s2">=</span><span class="s1">weather_data_2</span><span class="s2">.</span><span class="s1">max_wind_speed</span><span class="s2">,</span>
+            <span class="s1">sum_precipitation_inches</span><span class="s2">=</span><span class="s1">weather_data_2</span><span class="s2">.</span><span class="s1">sum_precipitation</span><span class="s2">,</span>
+            <span class="s1">min_precipitation_inches</span><span class="s2">=</span><span class="s1">weather_data_2</span><span class="s2">.</span><span class="s1">min_precipitation</span><span class="s2">,</span>
+            <span class="s1">max_precipitation_inches</span><span class="s2">=</span><span class="s1">weather_data_2</span><span class="s2">.</span><span class="s1">max_precipitation</span>
+        <span class="s2">)</span>
+        <span class="s1">session</span><span class="s2">.</span><span class="s1">add</span><span class="s2">(</span><span class="s1">record2</span><span class="s2">)</span>
+
+        <span class="s1">session</span><span class="s2">.</span><span class="s1">commit</span><span class="s2">()</span>
+
+        <span class="s3"># Query all records and check that both are inserted</span>
+        <span class="s1">results </span><span class="s2">= </span><span class="s1">session</span><span class="s2">.</span><span class="s1">query</span><span class="s2">(</span><span class="s1">WeatherRecord</span><span class="s2">).</span><span class="s1">all</span><span class="s2">()</span>
+
+        <span class="s3"># Test if two records are inserted</span>
+        <span class="s1">self</span><span class="s2">.</span><span class="s1">assertEqual</span><span class="s2">(</span><span class="s1">len</span><span class="s2">(</span><span class="s1">results</span><span class="s2">), </span><span class="s5">2</span><span class="s2">)</span>
+
+        <span class="s3"># Test specific values of the second record</span>
+        <span class="s1">second_record </span><span class="s2">= </span><span class="s1">session</span><span class="s2">.</span><span class="s1">query</span><span class="s2">(</span><span class="s1">WeatherRecord</span><span class="s2">).</span><span class="s1">filter_by</span><span class="s2">(</span><span class="s1">latitude</span><span class="s2">=</span><span class="s5">35.6895</span><span class="s2">, </span><span class="s1">longitude</span><span class="s2">=</span><span class="s5">139.6917</span><span class="s2">).</span><span class="s1">first</span><span class="s2">()</span>
+        <span class="s1">self</span><span class="s2">.</span><span class="s1">assertIsNotNone</span><span class="s2">(</span><span class="s1">second_record</span><span class="s2">)</span>
+        <span class="s1">self</span><span class="s2">.</span><span class="s1">assertEqual</span><span class="s2">(</span><span class="s1">second_record</span><span class="s2">.</span><span class="s1">latitude</span><span class="s2">, </span><span class="s5">35.6895</span><span class="s2">)</span>
+        <span class="s1">self</span><span class="s2">.</span><span class="s1">assertEqual</span><span class="s2">(</span><span class="s1">second_record</span><span class="s2">.</span><span class="s1">longitude</span><span class="s2">, </span><span class="s5">139.6917</span><span class="s2">)</span>
+        <span class="s1">self</span><span class="s2">.</span><span class="s1">assertEqual</span><span class="s2">(</span><span class="s1">second_record</span><span class="s2">.</span><span class="s1">avg_temp_Fahrenheit</span><span class="s2">, </span><span class="s5">75.0</span><span class="s2">)</span>
+        <span class="s1">self</span><span class="s2">.</span><span class="s1">assertEqual</span><span class="s2">(</span><span class="s1">second_record</span><span class="s2">.</span><span class="s1">min_temp_Fahrenheit</span><span class="s2">, </span><span class="s5">68.0</span><span class="s2">)</span>
+        <span class="s1">self</span><span class="s2">.</span><span class="s1">assertEqual</span><span class="s2">(</span><span class="s1">second_record</span><span class="s2">.</span><span class="s1">max_temp_Fahrenheit</span><span class="s2">, </span><span class="s5">82.0</span><span class="s2">)</span>
+        <span class="s1">self</span><span class="s2">.</span><span class="s1">assertEqual</span><span class="s2">(</span><span class="s1">second_record</span><span class="s2">.</span><span class="s1">avg_wind_speed_mph</span><span class="s2">, </span><span class="s5">5.0</span><span class="s2">)</span>
+        <span class="s1">self</span><span class="s2">.</span><span class="s1">assertEqual</span><span class="s2">(</span><span class="s1">second_record</span><span class="s2">.</span><span class="s1">min_wind_speed_mph</span><span class="s2">, </span><span class="s5">3.0</span><span class="s2">)</span>
+        <span class="s1">self</span><span class="s2">.</span><span class="s1">assertEqual</span><span class="s2">(</span><span class="s1">second_record</span><span class="s2">.</span><span class="s1">max_wind_speed_mph</span><span class="s2">, </span><span class="s5">7.0</span><span class="s2">)</span>
+        <span class="s1">self</span><span class="s2">.</span><span class="s1">assertEqual</span><span class="s2">(</span><span class="s1">second_record</span><span class="s2">.</span><span class="s1">sum_precipitation_inches</span><span class="s2">, </span><span class="s5">10.5</span><span class="s2">)</span>
+        <span class="s1">self</span><span class="s2">.</span><span class="s1">assertEqual</span><span class="s2">(</span><span class="s1">second_record</span><span class="s2">.</span><span class="s1">min_precipitation_inches</span><span class="s2">, </span><span class="s5">0.2</span><span class="s2">)</span>
+        <span class="s1">self</span><span class="s2">.</span><span class="s1">assertEqual</span><span class="s2">(</span><span class="s1">second_record</span><span class="s2">.</span><span class="s1">max_precipitation_inches</span><span class="s2">, </span><span class="s5">1.5</span><span class="s2">)</span>
+
+        <span class="s1">session</span><span class="s2">.</span><span class="s1">close</span><span class="s2">()</span>
+
+    <span class="s2">@</span><span class="s1">classmethod</span>
+    <span class="s0">def </span><span class="s1">tearDownClass</span><span class="s2">(</span><span class="s1">cls</span><span class="s2">):</span>
+        <span class="s3"># Clean up the database by removing all records inserted during testing.</span>
+        <span class="s1">Session </span><span class="s2">= </span><span class="s1">sessionmaker</span><span class="s2">(</span><span class="s1">bind</span><span class="s2">=</span><span class="s1">cls</span><span class="s2">.</span><span class="s1">engine</span><span class="s2">)</span>
+        <span class="s1">session </span><span class="s2">= </span><span class="s1">Session</span><span class="s2">()</span>
+        <span class="s1">session</span><span class="s2">.</span><span class="s1">query</span><span class="s2">(</span><span class="s1">WeatherRecord</span><span class="s2">).</span><span class="s1">delete</span><span class="s2">()</span>
+        <span class="s1">session</span><span class="s2">.</span><span class="s1">commit</span><span class="s2">()</span>
+        <span class="s1">session</span><span class="s2">.</span><span class="s1">close</span><span class="s2">()</span>
+
+<span class="s0">if </span><span class="s1">__name__ </span><span class="s2">== </span><span class="s4">&quot;__main__&quot;</span><span class="s2">:</span>
+    <span class="s1">unittest</span><span class="s2">.</span><span class="s1">main</span><span class="s2">()</span>
+</pre>
+</body>
+</html>

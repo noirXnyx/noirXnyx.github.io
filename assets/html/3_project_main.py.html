@@ -1,0 +1,76 @@
+<html>
+<head>
+<title>main.py</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #bcbec4;}
+.s1 { color: #7a7e85;}
+.s2 { color: #cf8e6d;}
+.s3 { color: #bcbec4;}
+.s4 { color: #2aacb8;}
+.s5 { color: #6aab73;}
+</style>
+</head>
+<body bgcolor="#1e1f22">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+main.py</font>
+</center></td></tr></table>
+<pre>
+<span class="s1">#Importing 'datetime' class from 'datetime' module, which is used to work with dates and times.</span>
+<span class="s2">from </span><span class="s0">datetime </span><span class="s2">import </span><span class="s0">datetime</span>
+
+<span class="s1"># insert_weather_data: function for inserting weather data into a db</span>
+<span class="s1"># weather record - class: representing the weather data table in the db</span>
+<span class="s1"># recreate_table - function: drops an existing weather data table and recreates it/ensures it exists</span>
+<span class="s2">from </span><span class="s0">database </span><span class="s2">import </span><span class="s0">insert_weather_data</span><span class="s3">, </span><span class="s0">recreate_table</span><span class="s3">, </span><span class="s0">query_weather_data</span>
+<span class="s1"># importing the weatherdata class from weather_data  file.</span>
+<span class="s2">from </span><span class="s0">weather_data </span><span class="s2">import </span><span class="s0">WeatherData</span>
+
+
+<span class="s1"># Importing 'sessionmaker' class from sqlalchemy, which is a factory for creating new 'Session' objects.</span>
+<span class="s1"># Session objects are sued to manage database transactions.</span>
+
+<span class="s1"># This function put together the process of retrieving weather data for a specific location and date, printing the data,</span>
+<span class="s1"># ensuring the database table is correctly set up, and then inserting the retrieved data into the db</span>
+<span class="s2">def </span><span class="s0">main</span><span class="s3">():</span>
+    <span class="s0">latitude </span><span class="s3">= </span><span class="s4">40.0806</span>
+    <span class="s0">longitude </span><span class="s3">= -</span><span class="s4">80.9001</span>
+    <span class="s0">today </span><span class="s3">= </span><span class="s0">datetime</span><span class="s3">.</span><span class="s0">today</span><span class="s3">()</span>
+
+    <span class="s1"># An instance of the 'WeatherData' class is created using lat, long, current date</span>
+    <span class="s0">weather </span><span class="s3">= </span><span class="s0">WeatherData</span><span class="s3">(</span><span class="s0">latitude</span><span class="s3">, </span><span class="s0">longitude</span><span class="s3">, </span><span class="s0">today</span><span class="s3">)</span>
+
+    <span class="s1"># The 'fetch_weather_data()' method is called on this instance to retrieve the weather data for the location</span>
+    <span class="s1"># and date range, most recent 5 years</span>
+    <span class="s0">weather</span><span class="s3">.</span><span class="s0">fetch_weather_data</span><span class="s3">()</span>
+
+    <span class="s1"># Generating the 3 weather variables in part c2</span>
+    <span class="s0">print</span><span class="s3">(</span><span class="s5">&quot;</span><span class="s2">\n</span><span class="s5">Weather Variables Asked in Part C2:&quot;</span><span class="s3">)</span>
+    <span class="s0">weather</span><span class="s3">.</span><span class="s0">fetch_mean_temperature</span><span class="s3">()</span>
+    <span class="s0">weather</span><span class="s3">.</span><span class="s0">fetch_max_wind_speed</span><span class="s3">()</span>
+    <span class="s0">weather</span><span class="s3">.</span><span class="s0">fetch_precipitation_sum</span><span class="s3">()</span>
+
+    <span class="s1"># This prints the 'WeatherData' object, which uses the '__repr__' method of the 'WeatherData'</span>
+    <span class="s1"># Generating the raw data return from the API url. This is helpful in checking if the table has the correct data</span>
+    <span class="s1"># Compare these raw data to the printed/generated query right below this information</span>
+    <span class="s1"># Raw data line starts with WeatherData, query line starts with ID</span>
+    <span class="s0">print</span><span class="s3">(</span><span class="s5">&quot;</span><span class="s2">\n</span><span class="s5">All raw weather data from API (use this to verify if data inserted are correct):&quot;</span><span class="s3">)</span>
+    <span class="s0">print</span><span class="s3">(</span><span class="s0">weather</span><span class="s3">)</span>
+
+    <span class="s1"># recreate_table is called to ensure that the db table for weather data exists, and reset it daily</span>
+    <span class="s1"># this function returns an 'engine' object which is the sqlalchemy connection to the db</span>
+    <span class="s0">engine </span><span class="s3">= </span><span class="s0">recreate_table</span><span class="s3">()</span>
+
+    <span class="s1"># This is called to insert the weather data fetched by the 'WeatherData' object into the db.</span>
+    <span class="s1"># The 'engine' is passed to connect to the appropriate db</span>
+    <span class="s0">insert_weather_data</span><span class="s3">(</span><span class="s0">engine</span><span class="s3">, </span><span class="s0">weather</span><span class="s3">)</span>
+
+    <span class="s1"># Query the database to verify data insertion</span>
+    <span class="s0">print</span><span class="s3">(</span><span class="s5">&quot;</span><span class="s2">\n</span><span class="s5">All records inserted in the database:&quot;</span><span class="s3">)</span>
+    <span class="s0">query_weather_data</span><span class="s3">(</span><span class="s0">engine</span><span class="s3">)</span>
+
+<span class="s0">main</span><span class="s3">()</span></pre>
+</body>
+</html>
