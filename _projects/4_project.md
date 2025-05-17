@@ -1,10 +1,11 @@
 ---
 layout: page
-title: project 4
-description: another without an image
-img:
-importance: 3
-category: fun
+title: Patterns in Transportation, Income, and Poverty Across All 50 U.S. States
+description: Platform - Tableau
+img: # assets/img/7.jpg
+redirect: https://public.tableau.com/app/profile/rc.gr/viz/PatternsinTransportationIncomeandPovertyAcrossAll50U_S_States-A2015Census-BasedAnalysis/Dashboard-Q1
+importance: 4
+category: school
 ---
 
 Every project has a beautiful feature showcase page.
