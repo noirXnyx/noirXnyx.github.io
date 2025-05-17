@@ -62,17 +62,19 @@ Click each item below to access the complete HTML-rendered version of each file.
 - <a href="{{ '/assets/html/3_project_main.py.html' | relative_url }}" target="_blank">Part 3: main.py</a>
 - <a href="{{ '/assets/html/3_project_test.py.html' | relative_url }}" target="_blank">Part 4: test.py</a>
 - <a href="{{ '/assets/html/3_project_requirements.txt.html' | relative_url }}" target="_blank">Requirements.txt</a>
+- <a href="{{ '/assets/html/3_project_README.txt.html' | relative_url }}" target="_blank">README.txt (Guide to easily run the program without reading the processes below.)</a>
 
+Note: This project was developed using the PyCharm IDE; however, other integrated development environments (IDEs) may also be used. 
+For a seamless setup, it is recommended to add your chosen IDE to your system's local path, connect it to GitHub for version control,
+and ensure that all required packages are properly installed before beginning any part of the project. For a complete list of required packages, please refer to the links provided above.<br>
+<br>
 <br>
 <span style='color: black; font-weight: bold;'>Part 1: weather_data.py</span><br>
-I used publicly available weather data from Open-Meteo. Below are the code I used to extract weather data using a GET API request. 
-The variables involved are location’s latitude and longitude, temperature, wind speed, and precipitation. 
+I used publicly available weather data from Open-Meteo. Below is the code used to extract the weather data using a GET API request. 
+The variables involved in this process include the location’s latitude and longitude, temperature, wind speed, and precipitation.
 <br>
 <br>
-Reminder: Ensure all required packages are installed before starting any part of this project. For the list of packages, kindly check the links above.
-<br>
-<br>
-As a starter, I created a Python Class with Instance variables to store weather data or variables i specified above.
+As an initial step, I created a Python class with instance variables to store the weather data, specifically the variables mentioned above.
 {% raw %}
 ```html
 class WeatherData:
@@ -107,8 +109,7 @@ class WeatherData:
 {% endraw %}
 
 <br>
-Next, I wrote this code to retrieve data from the Weather API. This involved dynamically setting the start and end dates for the most recent five years.
-
+Next, I developed a script to retrieve data from the Weather API. This involved dynamically setting the start and end dates to cover the most recent five years.
 {% raw %}
 ```html
         response = requests.get(url)
@@ -207,7 +208,6 @@ and the sum of precipitation (inches). I wrote this code for this task.
 {% endraw %}
 
 
-<br>
 <br><span style='color: black; font-weight: bold;'>Part 2: Building the database</span><br>
 Using Python's sqlite3 module, I created a simple SQLite database.
 
@@ -294,11 +294,16 @@ def query_weather_data(engine):
 
 <br><span style='color: black; font-weight: bold;'>Part 3: Control Center </span><br>
 The main.py script serves as the entry point of the program. It coordinates the entire weather data processing workflow by performing the following steps:
-1. Create a WeatherData object. A WeatherData instance is created using the current date, latitude, and longitude. This sets up the location and date range for data retrieval.
-2. Fetch and calculate weather metrics. Three separate methods are called to retrieve and compute: Mean temperature in Fahrenheit, Maximum wind speed in miles per hour, Total precipitation in inches
-3. Print the results to the console. After each metric is computed, it is immediately printed to provide real-time feedback.
-4. Recreate the database table. The existing weather data table in the SQLite database is dropped and recreated. 
-5. Insert the new weather data into the database. The calculated values from the WeatherData object are inserted as a new row in the weather_data table.
+1. Create a WeatherData object.
+<br> A WeatherData instance is created using the current date, latitude, and longitude. This sets up the location and date range for data retrieval.
+2. Fetch and calculate weather metrics.
+<br> Three separate methods are called to retrieve and compute: Mean temperature in Fahrenheit, Maximum wind speed in miles per hour, Total precipitation in inches
+3. Print the results to the console.
+<br> After each metric is computed, it is immediately printed to provide real-time feedback.
+4. Recreate the database table.
+<br> The existing weather data table in the SQLite database is dropped and recreated. 
+5. Insert the new weather data into the database.
+<br> The calculated values from the WeatherData object are inserted as a new row in the weather_data table.
 
 {% raw %}
 ```html
@@ -362,9 +367,12 @@ main()
 
 <br><span style='color: black; font-weight: bold;'>Part 4: Unit Test </span><br>
 In this part, the program is tested to ensure that all components work as expected and produce reliable outputs. Processes involved are as follows:
-1. Set Up Unit Tests. A separate file named test.py is created using Python's built-in unittest framework.
-2. Run the Tests. Tests are executed either from the command line (python test.py) or within the IDE.
-3. Clean Up After Each Test. Temporary records inserted during testing are removed to preserve the original dataset.
+1. Set Up Unit Tests. 
+<br> A separate file named test.py is created using Python's built-in unittest framework.
+2. Run the Tests. 
+<br> Tests are executed either from the command line (python test.py) or within the IDE.
+3. Clean Up After Each Test. 
+<br> Temporary records inserted during testing are removed to preserve the original dataset.
 
 {% raw %}
 ```html
