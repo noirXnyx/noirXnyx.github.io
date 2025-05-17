@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Simple Weather Prediction Using Python and SQLite
-description: Language - Python, Database - SQLite
+description: Language - Python, Database - SQLite, Environment - PyCharm
 # img: # assets/img/7.jpg
 # redirect: link here
 importance: 3
