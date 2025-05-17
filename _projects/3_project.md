@@ -16,7 +16,7 @@ In this project, I walk you through how I built a simple weather prediction mode
 - Building a prediction model using Python.
 
 <br><span style='color: black; font-weight: bold;'>Expected outputs:</span><br>
-- A database named weather_data with the necessary columns.
+- A database named weather.db with weather_data table.
 <div class="row justify-content-sm-center">
     <div class="col-sm-5 mt-3 mt-md-0">
         {% include figure.liquid path="assets/img/3_project_db.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
