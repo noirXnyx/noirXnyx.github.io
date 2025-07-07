@@ -5,7 +5,7 @@ description: Language - Python, Database - SQLite, Environment - PyCharm
 # img: # assets/img/7.jpg
 # redirect: link here
 importance: 3
-category: school projects
+category: school projects_
 ---
 
 In this project, I walk you through how I built a simple weather prediction model using Python and used SQLite to store and manage the data. This was one of my early projects during my bachelor's degree.

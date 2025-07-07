@@ -4,7 +4,8 @@ title: Projects
 permalink: /projects/
 description: |
     <span style='color: black; font-size: 1.15rem;'>This page showcases projects that have been committed and deployed on GitHub, each with a brief explanation and a link to the corresponding repository. Some projects are not yet committed or deployed due to various reasons such as ongoing revisions, data privacy considerations, or deployment constraints. The page is actively being updated to reflect current progress.</span><br></span><br>
-    <span style='color: black; font-size: 1.15rem;'>All processes on this webpage are deployed using PyCharm and GitHub.</span><br>
+    <span style='color: black; font-size: 1.15rem;'>All processes on this webpage are deployed using PyCharm and GitHub.</span><br></span><br>
+    <span style='color: black; font-size: 1.15rem;'>I hope for my projects to drive performance, and I hold myself accountable for the work I do. If you happen to have any suggestions, corrections, or ideas to better my project, feel free to send me an email—I’d genuinely appreciate your thoughts and would love to chat!</span><br></span><br>
 
 nav: true
 nav_order: 3

@@ -4,7 +4,7 @@ title: Patterns in Transportation, Income, and Poverty Across All 50 U.S. States
 description: Language - Python, Environment - Jupyter Lab, Visualization Platform - Tableau
 img: 
 importance: 2
-category: school projects
+category: school projects_
 related_publications: false
 ---
 

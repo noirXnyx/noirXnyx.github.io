@@ -9,7 +9,7 @@ description:
   # Model Evaluation & Reporting - MSE, RMSE, MAE, R² Score, residuals, T-tests, ANOVA tests
 img: 
 importance: 1
-category: school projects
+category: school projects_
 related_publications: false
 ---
 
