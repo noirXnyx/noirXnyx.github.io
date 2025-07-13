@@ -4,8 +4,10 @@ permalink: /repositories/
 title: Repositories
 # For description - Edit the `_data/repositories.yml` and change the `github_users` and `github_repos` lists to
 # include your own GitHub profile and repositories.
-description: Here are a few of my university projects — I'm still in the process of updating and editing this page.
-nav: true
+description: |
+  <span style='font-size: 1.15rem;'> Here are a few of my university projects that involved loading the final outputs to GitLab and/or GitHub. Pardon the emptiness as I am still in the process of updating and editing this page. </p> </span><br>
+  
+nav: false
 nav_order: 4
 ---
 
