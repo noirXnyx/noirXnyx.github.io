@@ -5,17 +5,21 @@ description: Language - Python, Database - SQLite, Environment - PyCharm
 # img: # assets/img/7.jpg
 # redirect: link here
 importance: 3
-category: school projects_
+category: school projects
+tags: 
+  - Database
+  - Python
+  - SQLite
+  - Pipeline
 ---
 
-In this project, I walk you through how I built a simple weather prediction model using Python and used SQLite to store and manage the data. This was one of my early projects during my bachelor's degree.
-
-<span style='color: black; font-weight: bold;'>This project involves:</span>
+In this project, I guide you through building a straightforward weather prediction model with Python and managing the data in SQLite — one of my early bachelor’s degree projects.
+<span style='font-weight: bold;'>This project involves:</span>
 - Collecting historical weather data using GET API request.
 - Storing and managing it with SQLite, a lightweight relational database. 
 - Building a prediction model using Python.
 
-<br><span style='color: black; font-weight: bold;'>Expected outputs:</span><br>
+<br><span style='font-weight: bold; font-size: 1.20rem'>Expected outputs:</span><br>
 - A database named weather.db with weather_data table.
 <div class="row justify-content-sm-center">
     <div class="col-sm-5 mt-3 mt-md-0">
@@ -51,9 +55,7 @@ In this project, I walk you through how I built a simple weather prediction mode
 </div><br>
 
 
-<br><span style='color: black; font-weight: bold;'> - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - </span><br>
-<br>
-<span style='color: black; font-weight: bold;'> Processes</span><br>
+<span style='font-weight: bold; font-size: 1.20rem'> Processes</span><br>
 The project is structured into four distinct components: database.py, main.py, test.py, and weather_data.py. The .py extension signifies that each file is written in Python, 
 which served as the primary programming language for this project. Additionally, it was a requirement to ensure that only these four components were developed. 
 Click each item below to access the complete HTML-rendered version of each file.
@@ -69,7 +71,7 @@ For a seamless setup, it is recommended to add your chosen IDE to your system's 
 and ensure that all required packages are properly installed before beginning any part of the project. For a complete list of required packages, please refer to the links provided above.<br>
 <br>
 <br>
-<span style='color: black; font-weight: bold;'>Part 1: weather_data.py</span><br>
+<span style='font-weight: bold; font-size: 1.15rem'>Part 1: weather_data.py</span><br>
 I used publicly available weather data from Open-Meteo. Below is the code used to extract the weather data using a GET API request. 
 The variables involved in this process include the location’s latitude and longitude, temperature, wind speed, and precipitation.
 <br>
@@ -208,7 +210,7 @@ and the sum of precipitation (inches). I wrote this code for this task.
 {% endraw %}
 
 
-<br><span style='color: black; font-weight: bold;'>Part 2: Building the database</span><br>
+<br><span style='font-weight: bold; font-size: 1.15rem'>Part 2: Building the database</span><br>
 Using Python's sqlite3 module, I created a simple SQLite database.
 
 {% raw %}
@@ -292,7 +294,7 @@ def query_weather_data(engine):
 {% endraw %}
 
 
-<br><span style='color: black; font-weight: bold;'>Part 3: Control Center </span><br>
+<br><span style='font-weight: bold; font-size: 1.15rem'>Part 3: Control Center </span><br>
 The main.py script serves as the entry point of the program. It coordinates the entire weather data processing workflow by performing the following steps:
 1. Create a WeatherData object.
 <br> A WeatherData instance is created using the current date, latitude, and longitude. This sets up the location and date range for data retrieval.
@@ -365,7 +367,7 @@ main()
 {% endraw %}
 
 
-<br><span style='color: black; font-weight: bold;'>Part 4: Unit Test </span><br>
+<br><span style='font-weight: bold; font-size: 1.15rem'>Part 4: Unit Test </span><br>
 In this part, the program is tested to ensure that all components work as expected and produce reliable outputs. Processes involved are as follows:
 1. Set Up Unit Tests. 
 <br> A separate file named test.py is created using Python's built-in unittest framework.
@@ -573,4 +575,4 @@ if __name__ == "__main__":
 {% endraw %}
 
 
-<br><span style='color: black; font-weight: bold;'>Thank you for reading this far! Have corrections, suggestions or feedback? Send me an email — I’d love to hear your thoughts! </span><br>
+<br><span style='font-weight: bold;'>Thank you for reading this far! Have corrections, suggestions or feedback? Send me an email — I’d love to hear your thoughts! </span><br>
