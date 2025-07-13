@@ -6,7 +6,7 @@
           include figure.liquid
           loading="eager"
           path=project.img
-          sizes = "250px"
+          sizes="250px"
           alt="project thumbnail"
           class="card-img-top"
         %}
@@ -14,6 +14,8 @@
       <div class="card-body">
         <h2 class="card-title">{{ project.title }}</h2>
         <p class="card-text">{{ project.description }}</p>
+
+        <!-- existing icon row -->
         <div class="row ml-1 mr-1 p-0">
           {% if project.github %}
             <div class="github-icon">
@@ -29,6 +31,22 @@
             </div>
           {% endif %}
         </div>
+
+        <!-- tag badges -->
+        {% if project.tags %}
+          <div class="project-card-tags mt-2">
+            {% for tag in project.tags %}
+              {% assign tag_slug = tag | slugify %}
+              <a
+                href="{{ '/projects/tags/' | append: tag_slug | append: '/' | relative_url }}"
+                class="badge badge-pill badge-secondary mx-1"
+              >
+                {{ tag }}
+              </a>
+            {% endfor %}
+          </div>
+        {% endif %}
+
       </div>
     </div>
   </a>

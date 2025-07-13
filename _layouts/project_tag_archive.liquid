@@ -1,0 +1,12 @@
+---
+layout: default
+---
+
+<h1>Projects tagged “{{ page.tag | capitalize }}”</h1>
+
+<div class="row row-cols-1 row-cols-md-3">
+  {%- assign filtered = site.projects | where_exp: "p", "p.tags contains page.tag" -%}
+  {%- for project in filtered -%}
+    {%- include project_card.html project=project -%}
+  {%- endfor -%}
+</div>
