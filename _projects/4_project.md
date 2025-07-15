@@ -57,7 +57,7 @@ category: personal projects
   <span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="{{ 'https://transtats.bts.gov/Tables.asp?DB_ID=120' | relative_url }}" target="_blank"> c. Bureau of Transportation Statistics </a>  — https://transtats.bts.gov/Tables.asp?DB_ID=120 <br>
   <span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="{{ 'https://data.un.org/' | relative_url }}" target="_blank"> d. UN Data </a>  — https://data.un.org/ <br>
 
-I bookmarked this page as my ongoing reference. Happy data hunting!
+I bookmarked this page as my ongoing reference, and you can too. Happy data hunting!
 
 
 <br><br>
