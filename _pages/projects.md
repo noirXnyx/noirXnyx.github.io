@@ -3,9 +3,9 @@ layout: page
 title: Projects
 permalink: /projects/
 description: |
-  <span style='font-size: 1.15rem;'> This page showcases projects that have been committed and deployed on GitHub, each with a brief explanation and a link to the corresponding repository. Some projects are not yet committed or deployed due to various reasons such as ongoing revisions, data privacy considerations, or deployment constraints. The page is actively being updated to reflect current progress. </span><br><br>
-  <span style='font-size: 1.15rem;'> All processes on this webpage are deployed using PyCharm and GitHub. To get the most out of each project, I recommend exploring them on a laptop or desktop computer.</span><br><br>
-  <span style='font-size: 1.15rem;'> I want my projects to continue to evolve into better versions, so if you have any suggestions, corrections, or ideas, feel free to send me an email — I’d genuinely appreciate your thoughts and would love to chat! </span><br><br>
+  <span style='font-size: 1.15rem; text-align: justify; display: block'> This page showcases projects that have been committed and deployed on GitHub, each with a brief explanation and a link to the corresponding repository. Some projects are not yet committed or deployed due to various reasons such as ongoing revisions, data privacy considerations, or deployment constraints. The page is actively being updated to reflect current progress. </span><br>
+  <span style='font-size: 1.15rem; text-align: justify; display: block'> All processes on this webpage are deployed using PyCharm and GitHub. To get the most out of each project, I recommend exploring them on a laptop or desktop computer.</span><br>
+  <span style='font-size: 1.15rem; text-align: justify; display: block'> I want my projects to continue to evolve into better versions, so if you have any suggestions, corrections, or ideas, feel free to send me an email — I’d genuinely appreciate your thoughts and would love to chat! </span><br>
 
 
 nav: true

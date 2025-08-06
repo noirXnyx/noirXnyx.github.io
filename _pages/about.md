@@ -3,11 +3,7 @@ layout: about
 title: About
 permalink: /
 subtitle: |
-  <span style='color: green; font-weight: bold; font-style: italic; font-size: 1.15rem;'>Email:</span><br>
-  <span style='color: green; font-style: italic; font-size: 1.15rem;'>rc.grear@gmail.com</span><br><br>
-
-  <span style='color: green; font-weight: bold; font-style: italic; font-size: 1.15rem;'>Interests: </span><br>
-  <span style='color: green; font-style: italic; font-size: 1.15rem;'> Beyond data and technology, I find joy in hands-on and heart-centered activities like cooking, gardening, and fishing. I'm drawn to adventure—whether that means traveling to new places or simply enjoying quiet moments while gazing at the horizon. </span><br><br>
+  <span style='color: green; font-weight: bold; font-style: italic; font-size: 1.20rem;'> <a href="mailto:rc.grear@gmail.com">Email: rc.grear@gmail.com </span><br><br>
 
 selected_papers: false # includes a list of papers marked as "selected={true}"           #Change to true if needed on the page
 social: false # includes social icons at the bottom of the page              #Change to true if needed on the page
@@ -24,14 +20,16 @@ latest_posts:
 ---
 
 
-Welcome!
+<span style='font-weight: bold; font-size: 1.15rem'>Welcome!
 
-I recently graduated from Western Governors University with a degree in Data Analytics. I’m excited to share my journey, showcase the projects I’ve been working on, and connect with others with similar interests. During my time at university, I worked on real-world problems through my coursework, which helped me build a strong foundation in technical and analytical skills.
+<span style="font-size: 1.15rem; text-align: justify; display: block;">I created this website to showcase my projects, highlight my technical and analytical skills, and share my journey transitioning into the field of data analytics. This space reflects my passion for continuous learning, problem-solving, and working with data to drive meaningful insights. Whether you're a fellow data enthusiast, a potential collaborator, or a recruiter, I hope you find something here that resonates with you.
 
-In addition to my degree in Data Analytics, I also hold a degree in Secondary Education with a focus on Chemistry. My teaching experience not only sharpened my subject knowledge but also strengthened my interpersonal and communication skills—both of which continue to serve me well in collaborative and professional settings.
+<span style="font-size: 1.15rem; text-align: justify; display: block;">I recently graduated from Western Governors University with a Bachelor of Science in Data Analytics. I’m excited to share the projects I’ve been working on, reflect on my learning journey, and connect with others who share similar interests. My coursework focused on solving real-world problems, allowing me to develop a strong foundation in data querying, cleaning, visualization, and storytelling using tools like SQL, Python, and Power BI.
 
-Before I began teaching, I worked in the corporate world, where I gained valuable insight into how dynamic and fast-paced the business environment can be. Later, I moved to Vietnam, where I applied my teaching license in an international setting. It was a fulfilling and memorable experience, and I’m grateful for the incredible people I met along the way.
+<span style="font-size: 1.15rem; text-align: justify; display: block;">In addition to my analytics degree, I also hold a degree in Secondary Education with a focus on Chemistry. My years of teaching helped me refine not only my subject-matter expertise but also my interpersonal and communication skills. These continue to support my success in collaborative environments and cross-functional teams.
 
-During the COVID-19 pandemic, I relocated to the United States. The move gave me time to reflect on my goals and reignited my passion for data and technology. I felt a strong pull to pursue a long-held dream, and that motivation led me to earn a Bachelor of Science in Data Analytics. Now, I’m excited to take the next step in my professional journey.
+<span style="font-size: 1.15rem; text-align: justify; display: block;">Prior to teaching, I worked in the corporate sector, where I gained firsthand experience with the pace and structure of business operations. I later moved to Vietnam to teach in an international setting. This was a deeply fulfilling chapter that enriched my worldview and reinforced my adaptability.
 
-I’m always eager to explore new ideas and broaden my skill set, so I hope you’ll check back here for updates on any projects I’ve got in the works. If you’d like to connect, feel free to reach out—I’d love to hear from you!
+<span style="font-size: 1.15rem; text-align: justify; display: block;">During the COVID-19 pandemic, I relocated to the United States. This transition gave me time to reflect and ultimately led me to pursue my long-standing interest in data and technology. That decision reignited my passion and motivated me to complete my degree in Data Analytics. Now, I’m excited to take the next step in my professional journey.
+
+<span style="font-size: 1.15rem; text-align: justify; display: block;">I’m always open to learning and exploring new ideas. Feel free to check back for updates on my latest projects. If you'd like to connect, don't hesitate to reach out — I’d love to hear from you!
