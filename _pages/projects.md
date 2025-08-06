@@ -3,9 +3,9 @@ layout: page
 title: Projects
 permalink: /projects/
 description: |
-  <span style='font-size: 1.15rem; text-align: justify; display: block'> This page showcases projects that have been committed and deployed on GitHub, each with a brief explanation and a link to the corresponding repository. Some projects are not yet committed or deployed due to various reasons such as ongoing revisions, data privacy considerations, or deployment constraints. The page is actively being updated to reflect current progress. </span><br>
-  <span style='font-size: 1.15rem; text-align: justify; display: block'> All processes on this webpage are deployed using PyCharm and GitHub. To get the most out of each project, I recommend exploring them on a laptop or desktop computer.</span><br>
-  <span style='font-size: 1.15rem; text-align: justify; display: block'> I want my projects to continue to evolve into better versions, so if you have any suggestions, corrections, or ideas, feel free to send me an email — I’d genuinely appreciate your thoughts and would love to chat! </span><br>
+  <span style='font-size: 1.15rem; text-align: justify; display: block'> This page showcases projects I’ve created, including those that have been committed and deployed on GitHub. Each project comes with a brief explanation and, where applicable, a link to the corresponding repository. Some projects are not yet committed or publicly deployed due to ongoing revisions, data privacy considerations, or other constraints. The page is actively being updated to reflect my current progress. </span><br>
+  <span style='font-size: 1.15rem; text-align: justify; display: block'> All processes on this webpage are developed and managed using PyCharm and GitHub. For the best experience, I recommend exploring these projects on a laptop or desktop computer. </span><br>
+  <span style='font-size: 1.15rem; text-align: justify; display: block'> I’m always working to improve and expand my projects. If you have any suggestions, corrections, or ideas, feel free to send me an email — I’d truly value your input and would love to connect! </span><br>
 
 
 nav: true
