@@ -30,9 +30,7 @@ latest_posts:
 
 <span style="font-size: 1.15rem; text-align: justify; display: block;">Prior to teaching, I worked in the corporate sector, where I gained firsthand experience with the pace and structure of business operations. I later moved to Vietnam to teach in an international setting. This was a deeply fulfilling chapter that enriched my worldview and reinforced my adaptability.
 
-<span
-  style="font-size: 1.15rem; text-align: justify; display: none;"
->
+<span class="hide-on-site" style="font-size: 1.15rem; text-align: justify;">
   During the COVID-19 pandemic, I relocated to the United States. This transition gave me time to reflect and ultimately led me to pursue my long-standing interest in data and technology. That decision reignited my passion and motivated me to complete my degree in Data Analytics. Now, I’m excited to take the next step in my professional journey.
 </span>
 
